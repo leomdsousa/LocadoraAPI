@@ -1,6 +1,7 @@
 ﻿using LocadoraAPI.Context;
 using LocadoraAPI.Models;
 using LocadoraAPI.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace LocadoraAPI.Repositories
 {
@@ -35,17 +36,17 @@ namespace LocadoraAPI.Repositories
             var entity = _context.Set<Locacao>().Add(locacao);
             var count = _context.SaveChanges();
 
-            return count > 0 ? entity.Entity : null;
+            return count > 0 ? ObterLocacao(entity.Entity.IdLocacao) : null;
         }
 
         public Locacao ObterLocacao(int idLocacao)
         {
-            return _context.Set<Locacao>().FirstOrDefault(x => x.IdLocacao == idLocacao);
+            return _context.Set<Locacao>().Include(x => x.Cliente).Include(x => x.Filme).FirstOrDefault(x => x.IdLocacao == idLocacao);
         }
 
         public List<Locacao> ObterLocacoes()
         {
-            return _context.Set<Locacao>().ToList();
+            return _context.Set<Locacao>().Include(x => x.Cliente).Include(x => x.Filme).ToList();
         }
 
         public bool ValidarDisponibilidadeFilme(int idFilme)
