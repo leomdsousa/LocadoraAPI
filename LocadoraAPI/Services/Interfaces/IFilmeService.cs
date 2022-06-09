@@ -4,7 +4,7 @@ namespace LocadoraAPI.Services.Interfaces
 {
     public interface IFilmeService
     {
-        List<FilmeDTO> ObterFilmes();
+        List<FilmeDTO>? ObterFilmes();
         FilmeDTO ObterFilme(int idFilme);
         FilmeDTO CadastrarFilme(FilmeDTO dto);
     }

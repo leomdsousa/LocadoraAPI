@@ -7,6 +7,7 @@ namespace LocadoraAPI.Repositories.Interfaces
         List<Locacao> ObterLocacoes();
         Locacao ObterLocacao(int idLocacao);
         Locacao LocarFilme(Locacao locacao);
-        bool DevolverFilme(int idLocacao);
+        Locacao DevolverFilme(Locacao locacao);
+        bool ValidarDisponibilidadeFilme(int idFilme);
     }
 }

@@ -13,19 +13,25 @@ namespace LocadoraAPI.Repositories
             _context = context;
         }
 
-        public Filme CadastrarFilme(Filme cliente)
+        public Filme CadastrarFilme(Filme filme)
         {
-            throw new NotImplementedException();
+            if (filme is null)
+                throw new NullReferenceException("Filme nulo.");
+
+            var entity = _context.Set<Filme>().Add(filme);
+            var count = _context.SaveChanges();
+
+            return count > 0 ? entity.Entity : null;
         }
 
         public Filme ObterFilme(int idFilme)
         {
-            throw new NotImplementedException();
+            return _context.Set<Filme>().FirstOrDefault(x => x.IdFilme == idFilme);
         }
 
         public List<Filme> ObterFilmes()
         {
-            throw new NotImplementedException();
+            return _context.Set<Filme>().ToList();
         }
     }
 }

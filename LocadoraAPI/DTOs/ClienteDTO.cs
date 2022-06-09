@@ -7,7 +7,7 @@ namespace LocadoraAPI.DTOs
         public int IdCliente { get; set; }
         
         [Required(ErrorMessage = "Obrigatório informar o nome do cliente.")]
-        public string? NomeCliente { get; set; }
+        public string NomeCliente { get; set; }
         public bool Ativo { get; set; }
     }
 }

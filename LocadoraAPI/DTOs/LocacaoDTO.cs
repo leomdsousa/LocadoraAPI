@@ -8,12 +8,14 @@ namespace LocadoraAPI.DTOs
 
         [Required(ErrorMessage = "Obrigatório informar o id do filme.")]
         public int IdFilme { get; set; }
+        public string Filme { get; set; }
 
         [Required(ErrorMessage = "Obrigatório informar o id do cliente.")]
         public int IdCliente { get; set; }
-
-        [Required(ErrorMessage = "Obrigatório informar a data de devolução da locação.")]
-        public DateTime DataDevolucao { get; set; }
+        public string Cliente { get; set; }
+        public string DataLocacao { get; set; }
+        public string DataDevolucao { get; set; }
+        public bool EmAtraso { get; set; }
         public bool Ativo { get; set; }
     }
 }

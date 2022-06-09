@@ -6,6 +6,6 @@ namespace LocadoraAPI.Repositories.Interfaces
     {
         List<Filme> ObterFilmes();
         Filme ObterFilme(int idFilme);
-        Filme CadastrarFilme(Filme cliente);
+        Filme CadastrarFilme(Filme filme);
     }
 }

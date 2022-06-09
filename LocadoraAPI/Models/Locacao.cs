@@ -16,16 +16,22 @@ namespace LocadoraAPI.Models
         [Column("ID_CLIENTE")]
         public int IdCliente { get; set; }
 
+        [Column("DATA_LOCACAO")]
+        public DateTime DataLocacao { get; set; }
+
         [Column("DATA_DEVOLUCAO")]
         public DateTime DataDevolucao { get; set; }
 
+        [Column("EM_ATRASO")]
+        public int EmAtraso { get; set; }
+
         [Column("ATIVO")]
-        public bool Ativo { get; set; }
+        public int Ativo { get; set; }
 
         [ForeignKey("IdFilme")]
-        public virtual Filme? Filme { get; set; }
+        public virtual Filme Filme { get; set; }
 
         [ForeignKey("IdCliente")]
-        public virtual Cliente? Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; }
     }
 }

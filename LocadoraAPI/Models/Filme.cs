@@ -11,9 +11,9 @@ namespace LocadoraAPI.Models
         public int IdFilme { get; set; }
 
         [Column("NOME_FILME")]
-        public string? NomeFilme { get; set; }
+        public string NomeFilme { get; set; }
 
         [Column("ATIVO")]
-        public bool Ativo { get; set; }
+        public int Ativo { get; set; }
     }
 }

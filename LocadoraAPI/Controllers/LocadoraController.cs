@@ -1,6 +1,7 @@
 using LocadoraAPI.DTOs;
 using LocadoraAPI.Models;
 using LocadoraAPI.Services.Interfaces;
+using LocadoraAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LocadoraAPI.Controllers
@@ -21,63 +22,143 @@ namespace LocadoraAPI.Controllers
         }
 
         [HttpGet("filmes")]
-        public ActionResult<List<FilmeDTO>> ObterFilmes()
+        public ActionResult<RetornoAPI> ObterFilmes()
         {
-            return _filmeService.ObterFilmes();
+            var retorno = _filmeService.ObterFilmes();
+
+            if (retorno?.Count == 0) return NoContent();
+
+            return new RetornoAPI()
+            {
+                Dados = retorno,
+                Mensagem = null
+            };
         }
 
         [HttpGet("filmes/{idFilme}")]
-        public ActionResult<FilmeDTO> ObterFilmes(int idFilme)
+        public ActionResult<RetornoAPI> ObterFilmes(int idFilme)
         {
-            return _filmeService.ObterFilme(idFilme);
+            var retorno = _filmeService.ObterFilme(idFilme);
+
+            if (retorno is null) return NoContent();
+
+            return new RetornoAPI()
+            {
+                Dados = retorno,
+                Mensagem = null
+            };
         }
 
         [HttpPost("filmes")]
-        public ActionResult<FilmeDTO> CadastrarFilme([FromBody] FilmeDTO dto)
+        public ActionResult<RetornoAPI> CadastrarFilme([FromBody] FilmeDTO dto)
         {
-            return _filmeService.CadastrarFilme(dto);
+            var retorno = _filmeService.CadastrarFilme(dto);
+
+            if (retorno is null) return NoContent();
+
+            return new RetornoAPI()
+            {
+                Dados = retorno,
+                Mensagem = null
+            };
         }
 
         [HttpGet("clientes")]
-        public ActionResult<List<ClienteDTO>> ObterClientes()
+        public ActionResult<RetornoAPI> ObterClientes()
         {
-            return _clienteService.ObterClientes();
+            var retorno = _clienteService.ObterClientes();
+
+            if (retorno is null) return NoContent();
+
+            return new RetornoAPI()
+            {
+                Dados = retorno,
+                Mensagem = null
+            };
         }
 
         [HttpGet("clientes/{idCliente}")]
-        public ActionResult<ClienteDTO> ObterClientes(int idCliente)
+        public ActionResult<RetornoAPI> ObterClientes(int idCliente)
         {
-            return _clienteService.ObterCliente(idCliente);
+            var retorno = _clienteService.ObterCliente(idCliente);
+
+            if (retorno is null) return NoContent();
+
+            return new RetornoAPI()
+            {
+                Dados = retorno,
+                Mensagem = null
+            };
         }
 
         [HttpPost("clientes")]
-        public ActionResult<ClienteDTO> CadastrarCliente([FromBody] ClienteDTO dto)
+        public ActionResult<RetornoAPI> CadastrarCliente([FromBody] ClienteDTO dto)
         {
-            return _clienteService.CadastrarCliente(dto);
+            var retorno = _clienteService.CadastrarCliente(dto);
+
+            if (retorno is null) return NoContent();
+
+            return new RetornoAPI()
+            {
+                Dados = retorno,
+                Mensagem = null
+            };
         }
 
         [HttpGet("locacoes")]
-        public ActionResult<List<LocacaoDTO>> ObterLocacoes()
+        public ActionResult<RetornoAPI> ObterLocacoes()
         {
-            return _locacaoService.ObterLocacoes();
+            var retorno = _locacaoService.ObterLocacoes();
+
+            if (retorno is null) return NoContent();
+
+            return new RetornoAPI()
+            {
+                Dados = retorno,
+                Mensagem = null
+            };
         }
 
         [HttpGet("locacoes/{idLocacao}")]
-        public ActionResult<LocacaoDTO> ObterLocacoes(int idLocacao)
+        public ActionResult<RetornoAPI> ObterLocacoes(int idLocacao)
         {
-            return _locacaoService.ObterLocacao(idLocacao);
+            var retorno = _locacaoService.ObterLocacao(idLocacao);
+
+            if (retorno is null) return NoContent();
+
+            return new RetornoAPI()
+            {
+                Dados = retorno,
+                Mensagem = null
+            };
         }
 
         [HttpPost("locacoes")]
-        public ActionResult<LocacaoDTO> LocarFilme([FromBody] LocacaoDTO dto)
+        public ActionResult<RetornoAPI> LocarFilme([FromBody] LocacaoDTO dto)
         {
-            return _locacaoService.LocarFilme(dto);
+            var retorno = _locacaoService.LocarFilme(dto);
+
+            if (retorno is null) return NoContent();
+
+            return new RetornoAPI()
+            {
+                Dados = retorno,
+                Mensagem = null
+            };
         }
 
         [HttpDelete("locacoes/{idLocacao}")]
-        public ActionResult<bool> DevolverFilme(int idLocacao)
+        public ActionResult<RetornoAPI> DevolverFilme(int idLocacao)
         {
-            return _locacaoService.DevolverFilme(idLocacao);
+            var mensagemRetorno = null as string;
+
+            var retorno = _locacaoService.DevolverFilme(idLocacao, out mensagemRetorno);
+
+            return new RetornoAPI()
+            {
+                Dados = retorno,
+                Mensagem = mensagemRetorno
+            };
         }
     }
 }

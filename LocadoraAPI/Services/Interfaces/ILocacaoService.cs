@@ -7,6 +7,6 @@ namespace LocadoraAPI.Services.Interfaces
         List<LocacaoDTO> ObterLocacoes();
         LocacaoDTO ObterLocacao(int idLocacao);
         LocacaoDTO LocarFilme(LocacaoDTO dto);
-        bool DevolverFilme(int idLocacao);
+        bool DevolverFilme(int idLocacao, out string mensagem);
     }
 }

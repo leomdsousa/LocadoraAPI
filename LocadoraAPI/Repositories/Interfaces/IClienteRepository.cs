@@ -7,5 +7,6 @@ namespace LocadoraAPI.Repositories.Interfaces
         List<Cliente> ObterClientes(); 
         Cliente ObterCliente(int idCliente);
         Cliente CadastrarCliente(Cliente cliente);
+        bool ExisteCliente(string nomeCliente);
     }
 }

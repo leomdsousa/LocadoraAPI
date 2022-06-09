@@ -1,4 +1,5 @@
 ﻿using LocadoraAPI.DTOs;
+using LocadoraAPI.Models;
 using LocadoraAPI.Repositories.Interfaces;
 using LocadoraAPI.Services.Interfaces;
 
@@ -15,12 +16,35 @@ namespace LocadoraAPI.Services
 
         public ClienteDTO CadastrarCliente(ClienteDTO dto)
         {
-            throw new NotImplementedException();
+            var existeCliente = _repository.ExisteCliente(dto.NomeCliente);
+
+            if (existeCliente)
+                throw new InvalidOperationException("Já existe usuário cadastrado com o mesmo nome.");
+
+            var cliente = new Cliente()
+            {
+                IdCliente = 0,
+                NomeCliente = dto.NomeCliente,
+                Ativo = dto.Ativo ? 1 : 0,
+            };
+
+            var retorno = _repository.CadastrarCliente(cliente);
+
+            if (retorno is null) return null;
+
+            return new ClienteDTO()
+            {
+                IdCliente = retorno.IdCliente,
+                NomeCliente = retorno.NomeCliente,
+                Ativo = retorno.Ativo == 1 ? true : false
+            };
         }
 
         public ClienteDTO ObterCliente(int idCliente)
         {
             var dados = _repository.ObterCliente(idCliente);
+
+            if (dados is null) return null;
 
             return new ClienteDTO()
             {
@@ -33,6 +57,8 @@ namespace LocadoraAPI.Services
         public List<ClienteDTO> ObterClientes()
         {
             var dados = _repository.ObterClientes();
+
+            if (dados?.Count == 0) return null;
 
             return dados.Select(x => new ClienteDTO()
             {

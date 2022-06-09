@@ -12,7 +12,7 @@ namespace LocadoraAPI.Models
 
         [Column("NOME_CLIENTE")]
         [Required]
-        public string? NomeCliente { get; set; }
+        public string NomeCliente { get; set; }
 
         [Column("ATIVO")]
         [Required]
