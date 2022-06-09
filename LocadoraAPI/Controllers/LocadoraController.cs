@@ -1,5 +1,4 @@
 using LocadoraAPI.DTOs;
-using LocadoraAPI.Models;
 using LocadoraAPI.Services.Interfaces;
 using LocadoraAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -142,7 +141,16 @@ namespace LocadoraAPI.Controllers
 
             return new RetornoAPI()
             {
-                Dados = retorno,
+                Dados = new
+                {
+                    retorno.IdLocacao,
+                    retorno.Filme,
+                    retorno.Cliente,
+                    retorno.EmAtraso,
+                    retorno.DataLocacao,
+                    retorno.DataDevolucao
+                    retorno.Ativo
+                },
                 Mensagem = null
             };
         }
