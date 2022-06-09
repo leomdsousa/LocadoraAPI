@@ -12,3 +12,4 @@ As seguintes ferramentas/bibiotecas foram usadas na construção do projeto:
 - Testes: XUnit (Unit Tests) e Moq.
 - Banco de Dados: SQLite.
 - Acesso a Dados: EntityFrameworkCore.
+- Documentação: Swagger.
