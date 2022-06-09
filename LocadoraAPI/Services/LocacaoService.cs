@@ -41,7 +41,7 @@ namespace LocadoraAPI.Services
             var validaDisponibilidadeFilme = _repository.ValidarDisponibilidadeFilme(dto.IdFilme);
 
             if (!validaDisponibilidadeFilme)
-                throw new NotImplementedException("Filme não disponível para locação.");
+                throw new InvalidOperationException("Filme não disponível para locação.");
 
             var locacao = new Locacao()
             {
