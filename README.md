@@ -1,7 +1,7 @@
 # Locadora API
 
 ## Descrição do Projeto
-<p align="center">Serviço REST para gerenciamento básico de locadora</p>
+Serviço REST para gerenciamento básico de locadora
 
 ### 🛠 Tecnologias
 
