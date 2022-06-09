@@ -36,7 +36,7 @@ namespace LocadoraAPI.Repositories
 
         public bool ExisteCliente(string nomeCliente)
         {
-            return _context.Set<Cliente>().Any(x => x.NomeCliente == nomeCliente);
+            return _context.Set<Cliente>().Any(x => x.NomeCliente == nomeCliente && x.Ativo == 1);
         }
     }
 }
