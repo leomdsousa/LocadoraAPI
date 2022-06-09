@@ -133,7 +133,7 @@ namespace LocadoraAPI.Controllers
         }
 
         [HttpPost("locacoes")]
-        public ActionResult<RetornoAPI> LocarFilme([FromBody] LocacaoDTO dto)
+        public ActionResult<RetornoAPI> LocarFilme([FromBody] LocacaoDTOInput dto)
         {
             var retorno = _locacaoService.LocarFilme(dto);
 
@@ -141,16 +141,7 @@ namespace LocadoraAPI.Controllers
 
             return new RetornoAPI()
             {
-                Dados = new
-                {
-                    retorno.IdLocacao,
-                    retorno.Filme,
-                    retorno.Cliente,
-                    retorno.EmAtraso,
-                    retorno.DataLocacao,
-                    retorno.DataDevolucao
-                    retorno.Ativo
-                },
+                Dados = retorno,
                 Mensagem = null
             };
         }

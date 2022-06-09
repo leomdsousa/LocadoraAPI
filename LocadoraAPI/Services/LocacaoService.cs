@@ -36,7 +36,7 @@ namespace LocadoraAPI.Services
             return true;
         }
 
-        public LocacaoDTO LocarFilme(LocacaoDTO dto)
+        public LocacaoDTOOutput LocarFilme(LocacaoDTOInput dto)
         {
             var validaDisponibilidadeFilme = _repository.ValidarDisponibilidadeFilme(dto.IdFilme);
 
@@ -57,7 +57,7 @@ namespace LocadoraAPI.Services
 
             if (retorno is null) return null;
 
-            return new LocacaoDTO()
+            return new LocacaoDTOOutput()
             {
                 IdLocacao = retorno.IdLocacao,
                 IdFilme = retorno.IdFilme,
@@ -71,13 +71,13 @@ namespace LocadoraAPI.Services
             };
         }
 
-        public LocacaoDTO ObterLocacao(int idLocacao)
+        public LocacaoDTOOutput ObterLocacao(int idLocacao)
         {
             var dados = _repository.ObterLocacao(idLocacao);
 
             if (dados is null) return null;
 
-            return new LocacaoDTO()
+            return new LocacaoDTOOutput()
             {
                 IdLocacao = dados.IdLocacao,
                 IdFilme = dados.IdFilme,
@@ -91,13 +91,13 @@ namespace LocadoraAPI.Services
             };
         }
 
-        public List<LocacaoDTO> ObterLocacoes()
+        public List<LocacaoDTOOutput> ObterLocacoes()
         {
             var dados = _repository.ObterLocacoes();
 
             if (dados?.Count == 0) return null;
 
-            return dados.Select(x => new LocacaoDTO()
+            return dados.Select(x => new LocacaoDTOOutput()
             {
                 IdLocacao = x.IdLocacao,
                 IdFilme = x.IdFilme,

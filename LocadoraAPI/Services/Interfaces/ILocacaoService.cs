@@ -4,9 +4,9 @@ namespace LocadoraAPI.Services.Interfaces
 {
     public interface ILocacaoService
     {
-        List<LocacaoDTO> ObterLocacoes();
-        LocacaoDTO ObterLocacao(int idLocacao);
-        LocacaoDTO LocarFilme(LocacaoDTO dto);
+        List<LocacaoDTOOutput> ObterLocacoes();
+        LocacaoDTOOutput ObterLocacao(int idLocacao);
+        LocacaoDTOOutput LocarFilme(LocacaoDTOInput dto);
         bool DevolverFilme(int idLocacao, out string mensagem);
     }
 }
