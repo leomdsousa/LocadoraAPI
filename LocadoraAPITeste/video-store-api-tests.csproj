@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LocadoraAPI\LocadoraAPI.csproj" />
+    <ProjectReference Include="..\LocadoraAPI\video-store-api.csproj" />
   </ItemGroup>
 
 </Project>
